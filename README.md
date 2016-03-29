@@ -1,1 +1,1 @@
-# Chat /n* ** BNG's Chat application ** * 
+# * ** BNG's Chat application ** * 
