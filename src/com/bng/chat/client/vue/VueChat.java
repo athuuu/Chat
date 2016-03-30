@@ -21,8 +21,7 @@ public class VueChat extends JFrame{
 	public JButton 
 		send, //bouton d'envoi 
 		quitter, //bouton d'arret
-		addContact, //bouton connexion
-		//deconnexion, //bouton pour se deconnecter 
+		addContact, //bouton connexion 
 		icone, //bouton pour charger une image out icone
 		fichier; //bouton pour charger un fichier
 	private JTextArea zoneMsg;
@@ -31,8 +30,8 @@ public class VueChat extends JFrame{
 	private JList<String> contacts;
 	private Room discussion;
 	
-	public VueChat(){
-		discussion = new Room("Room 1");
+	public VueChat(String nomRoom){
+		discussion = new Room(nomRoom);
 		init();
 		ihm();	
 		
@@ -101,13 +100,22 @@ public class VueChat extends JFrame{
 		con.weightx=25;con.weighty=10;
 		pano.add(new JScrollPane(contacts), con);
 		tab.addTab(this.discussion.getNom(),this.zoneMsg, nbRoom);
+		nbRoom = tab.getTabCount();
+		nbRoom = nbRoom > 0 ? tab.getTabCount() : 0;
+		
 		add(pano, BorderLayout.CENTER);
 	}
 	
-	 
+	public Onglet getTab(){
+		return tab;
+	}
+	public int getNbRoom(){
+		return nbRoom;
+	}
+	
 	
 	public static void main(String [] a){
-		new VueChat();
+		new VueChat("room test");
 	}
 
 

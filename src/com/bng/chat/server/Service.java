@@ -25,7 +25,7 @@ public class Service extends Thread implements Closeable{
 		
 	public void run(){
 		String operation = "";
-		while(!operation.equals("fin")){
+		while(!operation.equals("fin") && operation != null){
 			operation=extractMessage();
 		}
 		try {
@@ -55,6 +55,7 @@ public class Service extends Thread implements Closeable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		return operation;
 	}
 	
@@ -89,8 +90,12 @@ public class Service extends Thread implements Closeable{
 		try{
 			String type = element[1];
 			switch(type){
-			case "ajout": {
+			case "creer": {
 				Utils.creerRoom(element[2], pseudo);
+				send("ok");
+			}break;
+			case "ajout": {
+				Utils.ajouterClientRoom(element[2], element[3]);
 				send("ok");
 			}break;
 			case "liste": {
@@ -116,11 +121,13 @@ public class Service extends Thread implements Closeable{
 			String type = element[1];
 			switch(type){
 			case "ajout": {
-				Utils.AjouterContact(pseudo, element[2]); 
+				Utils.AjouterContact(pseudo, element[2]);
+				Utils.AjouterContact(element[2], pseudo);
 				send("ok");
 			}break;
 			case "supprimer": {
 				Utils.supprimerContact(pseudo, element[2]);
+				Utils.supprimerContact(element[2],pseudo );
 				send("ok");
 			}break;
 			case "ajouterRoom":{

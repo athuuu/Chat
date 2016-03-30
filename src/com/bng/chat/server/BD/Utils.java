@@ -72,7 +72,7 @@ public class Utils {
 		int idContact = getIdClient(pseudo);
 		try{
 			connect = ConnexionBD.getConnection();
-			String req = "delete from contact where idClient = ? and pseudoClient = ? " ;
+			String req = "delete from contact where idClient = ? and pseudoContact = ? " ;
 			PreparedStatement sta = connect.prepareStatement(req);
 			sta.setInt(1, idContact);
 			sta.setString(2, pseudo2);

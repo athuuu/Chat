@@ -19,10 +19,14 @@ import javax.swing.plaf.basic.BasicButtonUI;
 
 
 public class Onglet extends javax.swing.JTabbedPane{
-    Onglet moi; //pour avoir acces au l'element this dans les class internes
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	Onglet moi; //pour avoir acces au l'element this dans les class internes
 	public Onglet() {
 		super();
-        moi =this;
+        moi = this;
 	}
  
 	public void addTab(String title, Component component,int endroit) {
@@ -42,7 +46,11 @@ public class Onglet extends javax.swing.JTabbedPane{
  
  
 class CloseTabPanel extends JPanel{
-        JButton button; 
+       /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+		JButton button; 
  
 	//constructeur sans boolean  qui de base met un bouton close
     public CloseTabPanel(String titre) {
@@ -79,7 +87,12 @@ class CloseTabPanel extends JPanel{
         }
 }
 class TabButton extends JButton implements ActionListener {
-    public TabButton() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1554824733215312456L;
+
+	public TabButton() {
             int size = 17;
             setPreferredSize(new Dimension(size, size));
             setToolTipText("Fermer cet onglet");

@@ -34,7 +34,13 @@ public class ModelClient implements Closeable{
 	}
 	
 	public boolean creerRoom(String nomRoom) throws IOException{
-		this.client.getSocketClient().sendMessage("room:ajout:", nomRoom);
+		this.client.getSocketClient().sendMessage("room:creer:", nomRoom);
+		return this.client.getSocketClient().receiveMessage().toLowerCase().equals("ok");
+		
+	}
+
+	public boolean AjouterContactRoom(String nomRoom, String pseudoContact) throws IOException{
+		this.client.getSocketClient().sendMessage("room:ajout:", nomRoom+":"+pseudoContact);
 		return this.client.getSocketClient().receiveMessage().toLowerCase().equals("ok");
 		
 	}
@@ -56,6 +62,7 @@ public class ModelClient implements Closeable{
 	}
 
 	public void close() throws IOException {
+		this.client.getSocketClient().sendMessage("fin", "");
 		this.client.getSocketClient().deconnexion();
 		
 	}
